@@ -1,0 +1,4 @@
+INSERT INTO prompts (name, description, active_version_id, created_at, updated_at) VALUES
+                                                                                       ('Welcome Prompt', 'Use this prompt to get started.', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                       ('Draft Review', 'Review this draft for clarity, tone, and structure.', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                                                                       ('Bug Triage', 'Summarize the issue, suspected cause, and next action.', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
