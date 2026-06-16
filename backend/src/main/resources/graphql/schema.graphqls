@@ -1,0 +1,68 @@
+type Prompt {
+  id: ID!
+  name: String!
+  description: String
+  activeVersionId: ID
+  createdAt: String!
+  updatedAt: String!
+  versions: [PromptVersion!]!
+}
+
+type PromptVersion {
+  id: ID!
+  promptId: ID!
+  versionNumber: Int!
+  template: String!
+  status: PromptVersionStatus!
+  createdAt: String!
+  updatedAt: String!
+  runs: [PromptRun!]!
+}
+
+type PromptRun {
+  id: ID!
+  promptVersionId: ID!
+  input: String!
+  output: String!
+  executionTime: Int!
+  createdAt: String!
+}
+
+enum PromptVersionStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+input CreatePromptInput {
+  name: String!
+  description: String
+}
+
+input UpdatePromptInput {
+  name: String
+  description: String
+}
+
+input CreatePromptVersionInput {
+  template: String!
+}
+
+input RunPromptInput {
+  input: String!
+}
+
+type Query {
+  prompts: [Prompt!]!
+  prompt(id: ID!): Prompt
+  promptVersions(promptId: ID!): [PromptVersion!]!
+  promptRuns(promptVersionId: ID!): [PromptRun!]!
+}
+
+type Mutation {
+  createPrompt(input: CreatePromptInput!): Prompt!
+  updatePrompt(id: ID!, input: UpdatePromptInput!): Prompt!
+  createPromptVersion(promptId: ID!, input: CreatePromptVersionInput!): PromptVersion!
+  promotePromptVersion(promptVersionId: ID!): PromptVersion!
+  runPrompt(promptVersionId: ID!, input: RunPromptInput!): PromptRun!
+}

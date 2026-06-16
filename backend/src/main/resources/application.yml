@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:promptdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  h2:
+    console:
+      enabled: true
+  graphql:
+    graphiql:
+      enabled: true
